@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Projects\\ConsoleApp2\\",
+  "WorkspaceRootPath": "C:\\Users\\nagar\\AI-Windows-Shell\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F567DEC3-5707-429E-88A8-5A7720602A08}|ConsoleApp2.csproj|e:\\projects\\consoleapp2\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "AbsoluteMoniker": "D:0:0:{F567DEC3-5707-429E-88A8-5A7720602A08}|ConsoleApp2.csproj|c:\\users\\nagar\\ai-windows-shell\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{F567DEC3-5707-429E-88A8-5A7720602A08}|ConsoleApp2.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F567DEC3-5707-429E-88A8-5A7720602A08}|ConsoleApp2.csproj|e:\\projects\\consoleapp2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F567DEC3-5707-429E-88A8-5A7720602A08}|ConsoleApp2.csproj|c:\\users\\nagar\\ai-windows-shell\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F567DEC3-5707-429E-88A8-5A7720602A08}|ConsoleApp2.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F567DEC3-5707-429E-88A8-5A7720602A08}|ConsoleApp2.csproj|e:\\projects\\consoleapp2\\consoleapp2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{F567DEC3-5707-429E-88A8-5A7720602A08}|ConsoleApp2.csproj|c:\\users\\nagar\\ai-windows-shell\\consoleapp2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{F567DEC3-5707-429E-88A8-5A7720602A08}|ConsoleApp2.csproj|solutionrelative:consoleapp2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
@@ -22,21 +22,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": ".gitignore",
-              "DocumentMoniker": "E:\\Projects\\ConsoleApp2\\.gitignore",
+              "DocumentMoniker": "C:\\Users\\nagar\\AI-Windows-Shell\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "E:\\Projects\\ConsoleApp2\\.gitignore",
+              "ToolTip": "C:\\Users\\nagar\\AI-Windows-Shell\\.gitignore",
               "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAADUAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAABBwDUAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-07-27T21:11:24.854Z",
               "EditorCaption": ""
@@ -45,9 +41,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "ConsoleApp2.csproj",
-              "DocumentMoniker": "E:\\Projects\\ConsoleApp2\\ConsoleApp2.csproj",
+              "DocumentMoniker": "C:\\Users\\nagar\\AI-Windows-Shell\\ConsoleApp2.csproj",
               "RelativeDocumentMoniker": "ConsoleApp2.csproj",
-              "ToolTip": "E:\\Projects\\ConsoleApp2\\ConsoleApp2.csproj",
+              "ToolTip": "C:\\Users\\nagar\\AI-Windows-Shell\\ConsoleApp2.csproj",
               "RelativeToolTip": "ConsoleApp2.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -57,13 +53,21 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Projects\\ConsoleApp2\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\nagar\\AI-Windows-Shell\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "E:\\Projects\\ConsoleApp2\\Program.cs",
+              "ToolTip": "C:\\Users\\nagar\\AI-Windows-Shell\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAAwDgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-25T22:24:13.838Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
