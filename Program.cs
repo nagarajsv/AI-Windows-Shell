@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
-
+using static ConsoleApp2.Commands;
 
 
 String path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -90,103 +90,62 @@ if (!String.IsNullOrWhiteSpace(apiInput))
 {
     apiKey = apiInput.Trim();
 }
-
-while (true)
+else
 {
-    Console.Write(Directory.GetCurrentDirectory() + "$> ");
-    String? input = Console.ReadLine();
-    if(input == null)
+    apiKey = "AIzaSyDut5OtWxmGR8zUF7SqZESQph9DI70gKN0";
+}
+
+    while (true)
     {
-        //Console.WriteLine();
-        continue;
-    }
-    String command = input.Trim();
-    if(String.IsNullOrWhiteSpace(command))
-    {
-        continue;
-    }
-    String[] tokenized = command.Split(" ");
-    if(String.Equals("ai", tokenized[0], StringComparison.OrdinalIgnoreCase))
-    {
-        await LLMResponse(command.Substring(3));
-    }
-    else if (String.Equals(tokenized[0], "exit", StringComparison.OrdinalIgnoreCase))
-    {
-        break;
-    }
-    else if (String.Equals(tokenized[0], "cd", StringComparison.OrdinalIgnoreCase) || String.Equals(tokenized[0], "chdir", StringComparison.OrdinalIgnoreCase))
-    {
-        if(tokenized.Length < 2)
+        Console.Write(Directory.GetCurrentDirectory() + "$> ");
+        String? input = Console.ReadLine();
+        if (input == null)
         {
-            Console.WriteLine(Directory.GetCurrentDirectory());
+            //Console.WriteLine();
+            continue;
+        }
+        String command = input.Trim();
+        if (String.IsNullOrWhiteSpace(command))
+        {
+            continue;
+        }
+        String[] tokenized = command.Split(" ");
+        if (String.Equals("ai", tokenized[0], StringComparison.OrdinalIgnoreCase))
+        {
+            await LLMResponse(command.Substring(3));
+        }
+        else if (String.Equals(tokenized[0], "exit", StringComparison.OrdinalIgnoreCase))
+        {
+            break;
+        }
+        else if (String.Equals(tokenized[0], "cd", StringComparison.OrdinalIgnoreCase) || String.Equals(tokenized[0], "chdir", StringComparison.OrdinalIgnoreCase))
+        {
+            Cd(tokenized);
+        }
+        else if (String.Equals(tokenized[0], "cls", StringComparison.OrdinalIgnoreCase) || String.Equals(tokenized[0], "clear", StringComparison.OrdinalIgnoreCase))
+        {
+            Console.Clear();
+        }
+        else if (String.Equals(tokenized[0], "dir", StringComparison.OrdinalIgnoreCase) || String.Equals(tokenized[0], "ls", StringComparison.OrdinalIgnoreCase))
+        {
+            Dir();
         }
         else
         {
+            shellInstance = CustomCommand(tokenized);
             try
             {
-                Directory.SetCurrentDirectory(tokenized[1]);
+                shellInstance.Start();
+                shellInstance.WaitForExit();
             }
-            catch (DirectoryNotFoundException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Error, System could not find the specified directory");
-                Console.WriteLine("Details: " + ex.Message);
+                ErrorMessage("Error: " + ex.Message);
             }
-        } 
-    }
-    else if (String.Equals(tokenized[0], "cls", StringComparison.OrdinalIgnoreCase) || String.Equals(tokenized[0], "clear", StringComparison.OrdinalIgnoreCase))
-    {
-        Console.Clear();
-    }
-    else if (String.Equals(tokenized[0], "dir", StringComparison.OrdinalIgnoreCase) || String.Equals(tokenized[0], "ls", StringComparison.OrdinalIgnoreCase))
-    {
-        try
-        {
-            var dirInfo = new DirectoryInfo(Directory.GetCurrentDirectory());
-            Console.ForegroundColor = ConsoleColor.Green;
-            foreach (var file in dirInfo.GetFiles())
-            {
-                Console.WriteLine(file.Name);
-            }
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            foreach (var dir in dirInfo.GetDirectories())
-            {
-                Console.WriteLine(dir.Name + "\\");
-            }
-            Console.ResetColor();
-        }
-        catch (Exception ex)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Error: " + ex.Message);
-            Console.ResetColor();
-        }
-    }
-    else
-    {
-        try
-        {
-            shellInstance = new Process();
-            shellInstance.StartInfo.FileName = "powershell";
-            shellInstance.StartInfo.Arguments = $"-Command \"{command}\"";
-            shellInstance.StartInfo.UseShellExecute = false;
-            shellInstance.StartInfo.RedirectStandardInput = false;
-            shellInstance.StartInfo.RedirectStandardOutput = false;
-            shellInstance.StartInfo.RedirectStandardError = false;
-            shellInstance.StartInfo.CreateNoWindow = false;
 
-            shellInstance.Start();
-            shellInstance.WaitForExit();
-        }
-        catch (Exception ex)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Error: " + ex.Message);
-            Console.ResetColor();
+
+
+            //Console.WriteLine("unknown command: " + tokenized[0]);
         }
 
-
-
-        //Console.WriteLine("unknown command: " + tokenized[0]);
     }
-
-}
