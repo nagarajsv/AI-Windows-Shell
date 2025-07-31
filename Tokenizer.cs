@@ -21,7 +21,7 @@ namespace ConsoleApp2
 				char currentChar = CurrentChar();
                 if (char.IsWhiteSpace(currentChar))
                 {
-					tokens.Add(ReadWhiteSpace());
+					ReadWhiteSpace();
                 }
 				else if (currentChar.Equals('"'))
 				{
@@ -35,7 +35,7 @@ namespace ConsoleApp2
 				{
 					tokens.Add(ReadFlag());
 				}
-				else if ("|<>&".Contains(currentChar))
+				else if ("|<>&=".Contains(currentChar))
 				{
 					tokens.Add(ReadOperator());
 				}
@@ -75,14 +75,14 @@ namespace ConsoleApp2
 			}
 		}
 
-		private Token ReadWhiteSpace()
+		private void ReadWhiteSpace()
 		{
             int start = _position;
             while (char.IsWhiteSpace(CurrentChar()))
             {
                 _position++;
             }
-            return new Token(TokenType.Whitespace, _input.Substring(start, _position - start), start);
+            //return new Token(TokenType.Whitespace, _input.Substring(start, _position - start), start);
         }
 
 		private Token ReadString()
@@ -122,7 +122,7 @@ namespace ConsoleApp2
 		{
 			int start = _position;
 			char current = CurrentChar();
-			if(_position < _input.Length && CurrentChar().Equals(current))
+			if(_position < _input.Length && CurrentChar().Equals(current) && current == '>')
 			{
 				_position++;
 			}

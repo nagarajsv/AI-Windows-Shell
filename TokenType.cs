@@ -3,13 +3,12 @@ namespace ConsoleApp2
     public enum  TokenType
     {
         Identifier,
-        Flag,
         String,
         Number,
+        Flag,
         Punctuator,
         Operator,
-        Whitespace,
         Unknown,
-        EndOfInput
+        EndOfFile
     }
 }
