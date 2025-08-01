@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using static ConsoleApp2.Commands;
+using ConsoleApp2;
 
 
 String path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 Directory.SetCurrentDirectory(path);
 Process? shellInstance = null;
-
 
 String? apiKey = null;
 
@@ -110,6 +110,7 @@ else
             continue;
         }
         String[] tokenized = command.Split(" ");
+        List<Token> tokens = (new Tokenizer(command)).Tokenize();
         if (String.Equals("ai", tokenized[0], StringComparison.OrdinalIgnoreCase))
         {
             await LLMResponse(command.Substring(3));

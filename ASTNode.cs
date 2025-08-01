@@ -35,6 +35,7 @@ namespace ConsoleApp2
             value = val;
         }
     }
+
     public class RedirectionNode : ArgumentNode
     {
         public string op { get; }
@@ -50,9 +51,9 @@ namespace ConsoleApp2
     public class  FlagNode : ArgumentNode
     {
         public string name { get; }
-        public string value { get; }
+        public string? value { get; }
 
-        public FlagNode(string flagName, string flagValue)
+        public FlagNode(string flagName, string? flagValue)
         {
             name = flagName;
             value = flagValue;
