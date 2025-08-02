@@ -111,6 +111,8 @@ else
         }
         String[] tokenized = command.Split(" ");
         List<Token> tokens = (new Tokenizer(command)).Tokenize();
+        ASTNode ast = (new Parser(tokens)).Parse();
+        (new Interpreter(ast)).Execute();
         if (String.Equals("ai", tokenized[0], StringComparison.OrdinalIgnoreCase))
         {
             await LLMResponse(command.Substring(3));

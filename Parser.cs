@@ -53,12 +53,20 @@ namespace ConsoleApp2
 				else if (Check(TokenType.Flag))
 				{
 					string flag = _tokens[_position].Value;
+					_position++;
 
 					if(Check(TokenType.Operator, "="))
 					{
 						_position++;
 						string value = ConsumeAny(TokenType.String, TokenType.Identifier).Value;
 						args.Add(new FlagNode(flag, value));
+					} else if (_position >= _tokens.Count || String.IsNullOrWhiteSpace(_tokens[_position].Value))
+					{
+						args.Add(new FlagNode(flag, null));
+					}
+					else
+					{
+						throw new Exception("Unpexpected token");
 					}
 				}
 				else if (Check(TokenType.Identifier) || Check(TokenType.String))

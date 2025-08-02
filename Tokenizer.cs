@@ -81,14 +81,17 @@ namespace ConsoleApp2
 
 		private Token ReadString()
 		{
+			_position++; //Consume iniial quote
 			int start = _position;
-			_position++;
+			
 			while(_position < _input.Length && CurrentChar() != '"')
 			{
 				_position++;
 			}
-			_position++;
-			return new Token(TokenType.String, _input.Substring(start, _position - start), start);
+
+			var returnVal = new Token(TokenType.String, _input[start.._position], start);
+			_position++; // Consume closing quote
+			return returnVal;
 		}
 
 		private Token ReadNumber()
@@ -98,29 +101,34 @@ namespace ConsoleApp2
 			{
 				_position++;
 			}
-			return new Token(TokenType.Number, _input.Substring(start, _position - start), start);
+			return new Token(TokenType.Number, _input[start.._position], start);
 		}
 
 		private Token ReadFlag()
 		{
-			int start = _position;
 			_position++;
-			while(_position < _input.Length && (CurrentChar().Equals('-') || char.IsLetterOrDigit(CurrentChar())))
+			while(_position < _input.Length && CurrentChar().Equals('-'))
 			{
 				_position++;
 			}
-			return new Token(TokenType.Flag, _input.Substring(start, _position - start), start);
+			int start = _position;
+			while(_position < _input.Length && char.IsLetterOrDigit(CurrentChar()))
+			{
+				_position++;
+			}
+			return new Token(TokenType.Flag, _input[start.._position], start);
 		}
 
 		private Token ReadOperator()
 		{
 			int start = _position;
 			char current = CurrentChar();
+			_position++;
 			if(_position < _input.Length && CurrentChar().Equals(current) && current == '>')
 			{
 				_position++;
 			}
-			return new Token(TokenType.Operator, _input.Substring(start, _position - start), start);
+			return new Token(TokenType.Operator, _input[start.._position], start);
 		}
 
 		private Token ReadIdentifier()
@@ -133,7 +141,7 @@ namespace ConsoleApp2
 				current = CurrentChar();
 			}
 
-			return new Token(TokenType.Identifier, _input.Substring(start, _position - start), start);
+			return new Token(TokenType.Identifier, _input[start.._position], start);
 		}
 	}
 }

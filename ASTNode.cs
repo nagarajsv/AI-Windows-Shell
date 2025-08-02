@@ -26,7 +26,7 @@ namespace ConsoleApp2
         public string Target { get; } = targetName;
     }
 
-    public class  FlagNode(string flagName, string? flagValue) : ArgumentNode
+    public class FlagNode(string flagName, string? flagValue) : ArgumentNode
     {
         public string Name { get; } = flagName;
         public string? Value { get; } = flagValue;
