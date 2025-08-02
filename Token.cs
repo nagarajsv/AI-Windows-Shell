@@ -1,17 +1,10 @@
 namespace ConsoleApp2
 {
-    public class Token
+    public class Token(TokenType type, string value, int position)
     {
-        public TokenType Type { get; }
-        public string Value { get; }
-        public int Position { get; }
-
-        public Token(TokenType type, string value, int position)
-        {
-            Type = type;
-            Value = value;
-            Position = position;
-        }
+        public TokenType Type { get; } = type;
+        public string Value { get; } = value;
+        public int Position { get; } = position;
 
         public override string ToString()
         {

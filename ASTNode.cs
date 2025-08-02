@@ -2,61 +2,33 @@ namespace ConsoleApp2
 {
     public abstract class  ASTNode { }
 
-    public class CommandNode : ASTNode
+    public class CommandNode(string name, List<ArgumentNode> args) : ASTNode
     {
-        public string commandName { get; }
-        public List<ArgumentNode> arguments { get; }
-
-        public CommandNode(string name, List<ArgumentNode> args)
-        {
-            commandName = name;
-            arguments = args;
-        }
+        public string CommandName { get; } = name;
+        public List<ArgumentNode> Arguments { get; } = args;
     }
 
-    public class PipeNode : ASTNode
+    public class PipeNode(List<CommandNode> cmds) : ASTNode
     {
-        public List<CommandNode> commands { get; }
-
-        public PipeNode(List<CommandNode> cmds)
-        {
-            commands = cmds;
-        }
+        public List<CommandNode> Commands { get; } = cmds;
     }
 
     public abstract class  ArgumentNode: ASTNode { }
 
-    public class  StringNode : ArgumentNode
+    public class  StringNode(string val) : ArgumentNode
     {
-        public string value { get; }
-
-        public StringNode(string val)
-        {
-            value = val;
-        }
+        public string Value { get; } = val;
     }
 
-    public class RedirectionNode : ArgumentNode
+    public class RedirectionNode(string opSymbol, string targetName) : ArgumentNode
     {
-        public string op { get; }
-        public string target { get; }
-
-        public RedirectionNode(string opSymbol, string targetName)
-        {
-            op = opSymbol;
-            target = targetName;
-        }
+        public string Op { get; } = opSymbol;
+        public string Target { get; } = targetName;
     }
 
-    public class  FlagNode : ArgumentNode
+    public class  FlagNode(string flagName, string? flagValue) : ArgumentNode
     {
-        public string name { get; }
-        public string? value { get; }
-
-        public FlagNode(string flagName, string? flagValue)
-        {
-            name = flagName;
-            value = flagValue;
-        }
+        public string Name { get; } = flagName;
+        public string? Value { get; } = flagValue;
     }
 }

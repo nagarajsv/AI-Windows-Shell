@@ -1,25 +1,19 @@
 namespace ConsoleApp2
 {
-	public class Parser
-	{
-		private List<Token> _tokens;
-		private int _position;
+	public class Parser(List<Token> tokens)
+    {
+		private readonly List<Token> _tokens = tokens;
+		private int _position = 0;
 
-		public Parser(List<Token> tokens)
-		{
-			_tokens = tokens;
-			_position = 0;
-		}
-
-		public ASTNode Parse()
+        public ASTNode Parse()
 		{
 			var commands = new List<CommandNode>();
 
 			while(_position < _tokens.Count)
 			{
-				commands.Add(parseCommand());
+				commands.Add(ParseCommand());
 
-				if(check(TokenType.Operator, "|"))
+				if(Check(TokenType.Operator, "|"))
 				{
 					_position++;
 					continue;
@@ -40,34 +34,34 @@ namespace ConsoleApp2
 			}
 		}
 
-		private CommandNode parseCommand()
+		private CommandNode ParseCommand()
 		{
-			Token nameToken = consume(TokenType.Identifier, "Expected command name");
+			Token nameToken = Consume(TokenType.Identifier, "Expected command name");
 			string name = nameToken.Value;
 
 			var args = new List<ArgumentNode>();
 			
-			while(_position < _tokens.Count && !check(TokenType.Operator, "|"))
+			while(_position < _tokens.Count && !Check(TokenType.Operator, "|"))
 			{
-				if(check(TokenType.Operator, ">", ">>", "<"))
+				if(Check(TokenType.Operator, ">", ">>", "<"))
 				{
 					string op = _tokens[_position].Value;
 					_position++;
-					string target = consumeAny(TokenType.String, TokenType.Identifier).Value;
+					string target = ConsumeAny(TokenType.String, TokenType.Identifier).Value;
 					args.Add(new RedirectionNode(op, target));
 				}
-				else if (check(TokenType.Flag))
+				else if (Check(TokenType.Flag))
 				{
 					string flag = _tokens[_position].Value;
 
-					if(check(TokenType.Operator, "="))
+					if(Check(TokenType.Operator, "="))
 					{
 						_position++;
-						string value = consumeAny(TokenType.String, TokenType.Identifier).Value;
+						string value = ConsumeAny(TokenType.String, TokenType.Identifier).Value;
 						args.Add(new FlagNode(flag, value));
 					}
 				}
-				else if (check(TokenType.Identifier) || check(TokenType.String))
+				else if (Check(TokenType.Identifier) || Check(TokenType.String))
 				{
 					args.Add(new StringNode(_tokens[_position].Value));
 					_position++;
@@ -81,9 +75,9 @@ namespace ConsoleApp2
 			return new CommandNode(name, args);
 		}
 
-		private Token consume(TokenType type, string errorMessage)
+		private Token Consume(TokenType type, string errorMessage)
 		{
-			if(check(type))
+			if(Check(type))
 			{
 				Token token = _tokens[_position];
 				_position++;
@@ -93,7 +87,7 @@ namespace ConsoleApp2
 			throw new Exception(errorMessage);
 		}
 
-		private bool check(TokenType type, params string[] values)
+		private bool Check(TokenType type, params string[] values)
 		{
 			if (_position >= _tokens.Count)
 			{
@@ -105,7 +99,7 @@ namespace ConsoleApp2
 			return token.Type == type && (values.Length == 0 || values.Contains(token.Value));
 		}
 
-		private Token consumeAny(params TokenType[] types)
+		private Token ConsumeAny(params TokenType[] types)
 		{
 			if(_position < _tokens.Count && types.Contains(_tokens[_position].Type))
 			{

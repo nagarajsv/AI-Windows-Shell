@@ -3,17 +3,12 @@ using System.Security.Principal;
 
 namespace ConsoleApp2
 {
-	public class Tokenizer
-	{
-		private readonly string _input;
-		private int _position;
-		public Tokenizer(string input)
-		{
-			_input = input;
-			_position = 0;
-		}
+	public class Tokenizer(string input)
+    {
+		private readonly string _input = input;
+		private int _position = 0;
 
-		public List<Token> Tokenize()
+        public List<Token> Tokenize()
 		{
 			List<Token> tokens = [];
 			while(_position < _input.Length)
@@ -77,7 +72,6 @@ namespace ConsoleApp2
 
 		private void ReadWhiteSpace()
 		{
-            int start = _position;
             while (char.IsWhiteSpace(CurrentChar()))
             {
                 _position++;
