@@ -112,7 +112,7 @@ else
         String[] tokenized = command.Split(" ");
         List<Token> tokens = (new Tokenizer(command)).Tokenize();
         ASTNode ast = (new Parser(tokens)).Parse();
-        (new Interpreter(ast)).Execute();
+        await (new Interpreter(ast)).Execute();
         if (String.Equals("ai", tokenized[0], StringComparison.OrdinalIgnoreCase))
         {
             await LLMResponse(command.Substring(3));
@@ -123,7 +123,7 @@ else
         }
         else if (String.Equals(tokenized[0], "cd", StringComparison.OrdinalIgnoreCase) || String.Equals(tokenized[0], "chdir", StringComparison.OrdinalIgnoreCase))
         {
-            Cd(tokenized);
+            //Cd(tokenized);
         }
         else if (String.Equals(tokenized[0], "cls", StringComparison.OrdinalIgnoreCase) || String.Equals(tokenized[0], "clear", StringComparison.OrdinalIgnoreCase))
         {
@@ -131,7 +131,7 @@ else
         }
         else if (String.Equals(tokenized[0], "dir", StringComparison.OrdinalIgnoreCase) || String.Equals(tokenized[0], "ls", StringComparison.OrdinalIgnoreCase))
         {
-            Dir();
+            //Dir();
         }
         else
         {

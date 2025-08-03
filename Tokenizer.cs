@@ -39,7 +39,7 @@ namespace ConsoleApp2
 					tokens.Add(new Token(TokenType.Punctuator, currentChar.ToString(), _position));
 					_position++;
 				}
-				else if(char.IsLetter(currentChar))
+				else if(char.IsLetter(currentChar) || currentChar.Equals('.'))
 				{
 					tokens.Add(ReadIdentifier());
 				}
@@ -135,7 +135,7 @@ namespace ConsoleApp2
 		{
 			int start = _position;
 			char current = CurrentChar();
-			while(_position < _input.Length && (char.IsLetterOrDigit(current) || current.Equals('-') || current.Equals(':')))
+			while(_position < _input.Length && (char.IsLetterOrDigit(current) || "-:./".Contains(current)))
 			{
 				_position++;
 				current = CurrentChar();
